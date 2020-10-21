@@ -1,1 +1,0 @@
-# manumathis.github.io
