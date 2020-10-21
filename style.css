@@ -7,4 +7,4 @@
     .container { display: flex; }
     .item { flex-grow: 1; height: 100px; border: dashed 1px; }
     .item + .item { margin-left: 10px; }
-    .roboto { font-family: 'Roboto',sans-serif;}
+    .Krona One { font-family: 'Krona One',sans-serif;}
