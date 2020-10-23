@@ -19,170 +19,217 @@
     <link rel="stylesheet" href="style.css">
     <meta charset="utf-8" />
     <title>website</title>
-    
-    
-    
 
-    
-    
-  </head>
-  <body>
-<div class="uk-container-expand 1-2">
-    
-    <img src="41-410984_explorator-wallpapers-gtgraphics-gt-graphics.jpg" alt="picture"/>
-    
-    <div class="uk-card uk-card-default uk-card-body" style="z-index: 980;" uk-sticky="bottom: #offset"> <span uk-icon="home"></span> <ul class="uk-breadcrumb">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Linked Category</a></li>
-    <li><span>Franzoesisch</span></li>
-</ul></div>
-    
-<div class="uk-container">
-    
-    
-    <table>
-      <thead>
-        <tr>
-          <th>name</th>
-          <th>costs</th>
-        </tr>
-      </thead>
-      <tfoot>
-        <tr>
-          <th>name</th>
-          <th>costs</th>
-        </tr>
-      </tfoot>
-      <tbody>
-        <tr>
-          <td>Tea</td>
-          <td>1Chf/g</td>
-        </tr>
-        <tr>
-          <td>coffee</td>
-          <td>2.30Chf</dt>
-      </tr>
-      <tr>
-        <td>bred</td>
-        <td>1.30Chf</td>
-    </tr>
-    </tbody>
-  </table>
-  
+    <script>
+        async function digestMessage(message) {
+            const msgUint8 = new TextEncoder().encode(message);                           // encode as (utf-8) Uint8Array
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);           // hash the message
+            const hashArray = Array.from(new Uint8Array(hashBuffer));                     // convert buffer to byte array
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); // convert bytes to hex string
+            return hashHex;
+        }
 
 
-<div class="uk-inline">
-    <button class="uk-button uk-button-default" type="button">Gehen</button>
-    <div uk-drop="mode: click">
-        <div class="uk-card uk-card-body uk-card-default">aller😁</div>
-    </div>
-</div>
+        document.addEventListener('DOMContentLoaded', e => {
+            let el = document.querySelector("#login-dialog");
+            let user = document.querySelector("#login-username");
+            let pass = document.querySelector("#login-password");
+            UIkit.modal(el).show();
+            UIkit.util.on('#login-button', 'click', async e => {
+                let input = await digestMessage(user.value + pass.value);
+                const expect = '5dde896887f6754c9b15bfe3a441ae4806df2fde94001311e08bf110622e0bbe'; // xx
+                console.log("Expected: "+expect);
+                console.log("Received: "+input);
+                if ( input == expect) {
+                    UIkit.modal(el).hide();
+                }
+                else {
+                    UIkit.modal.alert('Login Denied!').then(e => {
+                        UIkit.modal(el).show();
+                    })
+                }
+            });
+        });
 
-<div class="uk-inline">
-    <button class="uk-button uk-button-default" type="button">machen</button>
-    <div uk-drop="mode: click">
-    
-        <div class="uk-card uk-card-body uk-card-default">faire😁</div>
-    </div>
-</div>
+    </script>
 
-<div class="uk-inline">
-    <button class="uk-button uk-button-default" type="button">fallen</button>
-    <div uk-drop="mode: click">
-        <div class="uk-card uk-card-body uk-card-default">ka😂</div>
-    </div>
-</div>
 
-<div class="uk-inline">
-    <button class="uk-button uk-button-default" type="button">eintreten</button>
-    <div uk-drop="mode: click">
-        <div class="uk-card uk-card-body uk-card-default">entre😁</div>
-    </div>
-</div>
 
-<ul uk-accordion>
-    <li class="uk-open">
-        <a class="uk-accordion-title" href="#">etre</a>
-        <div class="uk-accordion-content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-    </li>
-    <li>
-        <a class="uk-accordion-title" href="#">avoir</a>
-        <div class="uk-accordion-content">
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor reprehenderit.</p>
-        </div>
-    </li>
-    <li>
-        <a class="uk-accordion-title" href="#">aller</a>
-        <div class="uk-accordion-content">
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat proident.</p>
-        </div>
-    </li>
-</ul>
 
-<button class="demo uk-button uk-button-default" type="button" onclick="UIkit.notification({message: 'hahahaha lol😂'})">dont Click me</button>
+</head>
 
-<!-- This is a button toggling the modal -->
-<button class="uk-button uk-button-default uk-margin-small-right" type="button" uk-toggle="target: #modal-example">Open</button>
+<body>
+    <div class="uk-container-expand 1-2">
 
-<!-- This is an anchor toggling the modal -->
-<a href="#modal-example" uk-toggle>Open</a>
+        <img src="41-410984_explorator-wallpapers-gtgraphics-gt-graphics.jpg" alt="picture" />
 
-<!-- This is the modal -->
-<div id="modal-example" uk-modal>
-    <div class="uk-modal-dialog uk-modal-body">
-        <h2 class="uk-modal-title">Log in</h2>
-        <p><form>
-    <fieldset class="uk-fieldset">
-
-        <legend class="uk-legend">Login</legend>
-
-        <div class="uk-margin">
-            <input class="uk-input" type="Text" placeholder="username">
+        <div class="uk-card uk-card-default uk-card-body" style="z-index: 980;" uk-sticky="bottom: #offset"> <span
+                uk-icon="home"></span>
+            <ul class="uk-breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Linked Category</a></li>
+                <li><span>Franzoesisch</span></li>
+            </ul>
         </div>
 
-        <div class="uk-margin">
-            <input class="uk-input" type="password" placeholder="Password"></textarea>
-        </div>
+        <div class="uk-container">
 
 
-    </fieldset>
-</form></p>
-        <p class="uk-text-right">
-            <button class="uk-button uk-button-default uk-modal-close" type="button">OK</button>
-            
-        </p>
-    </div>
-</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>costs</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>name</th>
+                        <th>costs</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>Tea</td>
+                        <td>1Chf/g</td>
+                    </tr>
+                    <tr>
+                        <td>coffee</td>
+                        <td>2.30Chf</dt>
+                    </tr>
+                    <tr>
+                        <td>bred</td>
+                        <td>1.30Chf</td>
+                    </tr>
+                </tbody>
+            </table>
 
-   <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
-    <h3 class="uk-card-title">nice</h3>
-    <p>oke <a href="#">HI</a> hi its me</p>
-</div> 
-    
-      
-<article class="uk-comment">
-    <header class="uk-comment-header">
-        <div class="uk-grid-medium uk-flex-middle" uk-grid>
-            <div class="uk-width-auto">
-                <img class="uk-comment-avatar" src="41-410984_explorator-wallpapers-gtgraphics-gt-graphics.jpg" width="80" height="80" alt="">
+
+
+            <div class="uk-inline">
+                <button class="uk-button uk-button-default" type="button">Gehen</button>
+                <div uk-drop="mode: click">
+                    <div class="uk-card uk-card-body uk-card-default">aller😁</div>
+                </div>
             </div>
-            <div class="uk-width-expand">
-                <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a></h4>
-                <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
-                    <li><a href="#">2 hours ago</a></li>
-                    <li><a href="#">Reply</a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
-    <div class="uk-comment-body">
-        <p>Hi this is my website😁 and i hate francais😂</p>
-    </div>
-</article>
 
-      
-    </div>
+            <div class="uk-inline">
+                <button class="uk-button uk-button-default" type="button">machen</button>
+                <div uk-drop="mode: click">
+
+                    <div class="uk-card uk-card-body uk-card-default">faire😁</div>
+                </div>
+            </div>
+
+            <div class="uk-inline">
+                <button class="uk-button uk-button-default" type="button">fallen</button>
+                <div uk-drop="mode: click">
+                    <div class="uk-card uk-card-body uk-card-default">ka😂</div>
+                </div>
+            </div>
+
+            <div class="uk-inline">
+                <button class="uk-button uk-button-default" type="button">eintreten</button>
+                <div uk-drop="mode: click">
+                    <div class="uk-card uk-card-body uk-card-default">entre😁</div>
+                </div>
+            </div>
+
+            <ul uk-accordion>
+                <li class="uk-open">
+                    <a class="uk-accordion-title" href="#">etre</a>
+                    <div class="uk-accordion-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
+                    </div>
+                </li>
+                <li>
+                    <a class="uk-accordion-title" href="#">avoir</a>
+                    <div class="uk-accordion-content">
+                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat. Duis aute irure dolor reprehenderit.</p>
+                    </div>
+                </li>
+                <li>
+                    <a class="uk-accordion-title" href="#">aller</a>
+                    <div class="uk-accordion-content">
+                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                            pariatur. Excepteur sint occaecat cupidatat proident.</p>
+                    </div>
+                </li>
+            </ul>
+
+            <button class="demo uk-button uk-button-default" type="button"
+                onclick="UIkit.notification({message: 'hahahaha lol😂'})">dont Click me</button>
+
+            <!-- This is a button toggling the modal -->
+            <button class="uk-button uk-button-default uk-margin-small-right" type="button"
+                uk-toggle="target: #login-dialog">Open</button>
+
+            <!-- This is an anchor toggling the modal -->
+            <a href="#login-dialog" uk-toggle>Open</a>
+
+            <!-- This is the modal -->
+            <div id="login-dialog" uk-modal>
+                <div class="uk-modal-dialog uk-modal-body">
+                    <h2 class="uk-modal-title">Log in</h2>
+                    <p>
+                    <form>
+                        <fieldset class="uk-fieldset">
+
+                            <legend class="uk-legend">Login</legend>
+
+                            <div class="uk-margin">
+                                <input id="login-username" class="uk-input" type="Text" placeholder="username">
+                            </div>
+
+                            <div class="uk-margin">
+                                <input id="login-password" class="uk-input" type="password"
+                                    placeholder="Password"></textarea>
+                            </div>
+
+
+                        </fieldset>
+                    </form>
+                    </p>
+                    <p class="uk-text-right">
+                        <button id="login-button" class="uk-button uk-button-default" type="button">OK</button>
+
+                    </p>
+                </div>
+            </div>
+
+            <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+                <h3 class="uk-card-title">nice</h3>
+                <p>oke <a href="#">HI</a> hi its me</p>
+            </div>
+
+
+            <article class="uk-comment">
+                <header class="uk-comment-header">
+                    <div class="uk-grid-medium uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            <img class="uk-comment-avatar"
+                                src="41-410984_explorator-wallpapers-gtgraphics-gt-graphics.jpg" width="80" height="80"
+                                alt="">
+                        </div>
+                        <div class="uk-width-expand">
+                            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a>
+                            </h4>
+                            <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+                                <li><a href="#">2 hours ago</a></li>
+                                <li><a href="#">Reply</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+                <div class="uk-comment-body">
+                    <p>Hi this is my website😁 and i hate francais😂</p>
+                </div>
+            </article>
+
+
+        </div>
 </body>
+
 </html>
