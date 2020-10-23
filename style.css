@@ -1,6 +1,5 @@
     h1 { color: blue; }
     .link { color: red; }
-    h2 { border-color: red;border-style:solid; }
     div.important h1 { color: red }
     
     .container { flex-direction: column-reverse ; } 
