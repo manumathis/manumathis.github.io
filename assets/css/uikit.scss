@@ -1,0 +1,39 @@
+---
+---
+// 1. Your custom variables and variable overwrites.
+$global-color: #000;
+$global-font-family: "Roboto";
+$base-heading-font-family: "Roboto Slab";
+
+$base-heading-font-weight: 300;
+$base-heading-color: #003366;
+$primary-color: #1c3664;
+$offcanvas-bar-background: #fff;
+$offcanvas-bar-color-mode: none;
+$navbar-background: rgba(255,255,255,0.9);
+$navbar-nav-item-font-family: "Roboto Slab";
+$navbar-nav-item-font-size: 1.2rem;
+$navbar-nav-item-text-transform: none;
+
+// $hamburger-layer-color         : #1c3664;
+// $hamburger-padding-x: 20px;
+// $hamburger-padding-y: 15px;
+// $hamburger-types     : (squeeze);
+
+// 2. Import default variables and available mixins.
+@import "variables-theme.scss";
+
+$overlay-default-background: rgba($global-background, 0.7);
+
+
+@import "mixins-theme.scss";
+
+
+// 3. Your custom mixin overwrites.
+// @mixin hook-card() { color: #000; }
+
+// 4. Import UIkit.
+@import "uikit-theme.scss";
+
+// @import "hamburgers/hamburgers.scss";
+
