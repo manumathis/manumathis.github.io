@@ -37,7 +37,7 @@
             UIkit.modal(el).show();
             UIkit.util.on('#login-button', 'click', async e => {
                 let input = await digestMessage(user.value + pass.value);
-                const expect = 'e2f62831c3fe701ac5ad5a1155f9b11b89aed769eb66c36e7c472fb24f0f0e1b'; // xx
+                const expect = '38fc87b0b9f178c1a60352fe52d54d7ee834a117479ef3847f8bdca57a5d1d39'; // xx
                 console.log("Expected: "+expect);
                 console.log("Received: "+input);
                 if ( input == expect) {
